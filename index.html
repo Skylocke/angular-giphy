@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Angular GIPHY</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="app.js"></script>
   </head>
@@ -15,10 +16,11 @@
     <div ng-show="results !== undefined && results.length === 0">
       no results
     </div>
-    <div ng-show="results !== undefined && results.length > 0"
-        ng-repeat="result in results">
-      <img ng-src="{{result.images.original.url}}" />
-
+    <div class="columns">
+      <div ng-show="results !== undefined && results.length > 0"
+          ng-repeat="result in results" class="gallery-thumbnail">
+        <img ng-src="{{result.images.original.url}}" />
+      </div>
     </div>
   </body>
 </html>

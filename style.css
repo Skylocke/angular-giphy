@@ -1,0 +1,30 @@
+.columns {
+	-webkit-column-count: 3;
+	-webkit-column-gap: 5px;
+	-webkit-column-fill: auto;
+	-moz-column-count: 3;
+	-moz-column-gap: 5px;
+	-moz-column-fill: auto;
+	column-count: 3;
+	column-gap: 5px;
+	column-fill: auto;
+}
+
+.gallery-thumbnail {
+	display: inline-block;
+	margin: 2px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+
+.gallery-thumbnail img {
+	width: 100%;
+	/*border-bottom: 1px solid #ccc;*/
+	/*padding-bottom: 15px;*/
+	/*margin-bottom: 5px;*/
+}
