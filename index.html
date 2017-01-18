@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="GiphyApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular GIPHY</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-controller="GiphyCtrl">
+    <h1>Angular Giphy</h1>
+    <form ng-submit="search()">
+      <input type="text" ng-model="searchTerm" />
+      <button type="submit">search giphy</button>
+    </form>
+    <div ng-show="results !== undefined && results.length === 0">
+      no results
+    </div>
+    <div ng-show="results !== undefined && results.length > 0"
+        ng-repeat="result in results">
+      <img ng-src="{{result.images.original.url}}" />
+
+    </div>
+  </body>
+</html>
