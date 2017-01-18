@@ -1,11 +1,19 @@
 var app = angular.module("GiphyApp", []);
-app.controller("GiphyCtrl", ["$scope", "$http", function($scope, $http) {
+app.controller("GiphyCtrl", ["$scope", "$http", "$timeout", function($scope, $http, $timeout) {
   $scope.searchTerm = "";
   $scope.results = undefined;
 
+  var delayedSearch;
+  var lastKeyPressTime;
+  var searchRequestTime;
   $scope.$watch("searchTerm", function(newVal, oldVal) {
     console.log("search term:", newVal, oldVal, $scope.searchTerm);
-    $scope.search();
+    lastKeyPressTime = new Date();
+    $timeout.cancel(delayedSearch);
+    delayedSearch = $timeout(function() {
+      $scope.search();
+      console.log(lastKeyPressTime);
+    }, 500);
   });
 
   $scope.search = function() {
@@ -23,6 +31,10 @@ app.controller("GiphyCtrl", ["$scope", "$http", function($scope, $http) {
       $scope.results = res.data.data;
     }, function failure(res) {
       console.log("HTTP failed:", res);
+    }).then(function() {
+      searchRequestTime = new Date();
+      console.log(searchRequestTime);
+      console.log((searchRequestTime-lastKeyPressTime) + " ms");
     });
   }
 }]);
